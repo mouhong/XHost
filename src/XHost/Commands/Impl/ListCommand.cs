@@ -41,7 +41,7 @@ namespace XHost.Commands.Impl
 
         public void Execute(CommandLine commandLine, CommandExecutionContext context)
         {
-            var entries = context.HostFile.AllEntries();
+            var entries = context.Hosts.AllEntries();
 
             if (entries.Count == 0)
             {

@@ -53,8 +53,8 @@
     <Compile Include="Commands\Impl\RemoveEntryCommand.cs" />
     <Compile Include="Commands\Impl\UpdateEntryCommand.cs" />
     <Compile Include="ConsoleUtil.cs" />
-    <Compile Include="HostFile.cs" />
-    <Compile Include="HostFileLine.cs" />
+    <Compile Include="HostsFile.cs" />
+    <Compile Include="HostsFileLine.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

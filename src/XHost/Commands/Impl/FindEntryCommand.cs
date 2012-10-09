@@ -47,7 +47,7 @@ namespace XHost.Commands.Impl
                 return;
             }
 
-            var entry = context.HostFile.FindEntry(commandLine.Parameters[0]);
+            var entry = context.Hosts.FindEntry(commandLine.Parameters[0]);
 
             if (entry == null)
             {

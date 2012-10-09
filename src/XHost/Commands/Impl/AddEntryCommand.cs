@@ -50,12 +50,12 @@ namespace XHost.Commands.Impl
             var host = commandLine.Parameters[1];
             var ip = commandLine.Parameters[0];
 
-            if (context.HostFile.Contains(host))
+            if (context.Hosts.Contains(host))
             {
                 if (commandLine.Options.Count > 0 && commandLine.Options[0].Name == "override")
                 {
-                    context.HostFile.Set(ip, host);
-                    context.HostFile.Save();
+                    context.Hosts.Set(ip, host);
+                    context.Hosts.Save();
 
                     Console.WriteLine("1 entry updated: " + commandLine.Parameters[0] + " " + commandLine.Parameters[1]);
                 }
@@ -66,8 +66,8 @@ namespace XHost.Commands.Impl
             }
             else
             {
-                context.HostFile.Set(commandLine.Parameters[0], commandLine.Parameters[1]);
-                context.HostFile.Save();
+                context.Hosts.Set(commandLine.Parameters[0], commandLine.Parameters[1]);
+                context.Hosts.Save();
 
                 Console.WriteLine("1 entry added: " + commandLine.Parameters[0] + " " + commandLine.Parameters[1]);
             }

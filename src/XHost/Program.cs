@@ -58,7 +58,7 @@ namespace XHost
             if (command == null)
                 throw new InvalidOperationException("Unknown command: " + cmdLine.CommandName);
 
-            var context = new CommandExecutionContext(HostFile.Load());
+            var context = new CommandExecutionContext(HostsFile.Load());
 
             command.Execute(cmdLine, context);
         }

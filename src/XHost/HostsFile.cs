@@ -6,9 +6,9 @@ using System.Text;
 
 namespace XHost
 {
-    public class HostFile
+    public class HostsFile
     {
-        public IList<HostFileLine> Lines { get; private set; }
+        public IList<HostsFileLine> Lines { get; private set; }
 
         public bool IsDirty { get; private set; }
 
@@ -27,26 +27,26 @@ namespace XHost
             }
         }
 
-        public HostFile()
+        public HostsFile()
         {
-            Lines = new List<HostFileLine>();
+            Lines = new List<HostsFileLine>();
         }
 
-        public static HostFile Load()
+        public static HostsFile Load()
         {
             return Load(XHostConfig.Instance.HostsFilePath);
         }
 
-        public static HostFile Load(string path)
+        public static HostsFile Load(string path)
         {
-            var file = new HostFile();
+            var file = new HostsFile();
             file.ReloadFrom(path);
             return file;
         }
 
-        public static HostFile Load(TextReader reader)
+        public static HostsFile Load(TextReader reader)
         {
-            var file = new HostFile();
+            var file = new HostsFile();
             file.ReloadFrom(reader);
             return file;
         }
@@ -69,11 +69,11 @@ namespace XHost
 
                 if (line == null) break;
 
-                Lines.Add(new HostFileLine(line));
+                Lines.Add(new HostsFileLine(line));
             }
         }
 
-        public HostFileLine FindEntry(string host)
+        public HostsFileLine FindEntry(string host)
         {
             if (String.IsNullOrEmpty(host)) return null;
 
@@ -86,11 +86,11 @@ namespace XHost
             return entry == null ? null : entry.IP;
         }
 
-        public IList<HostFileLine> AllEntries()
+        public IList<HostsFileLine> AllEntries()
         {
             if (Lines.Count == 0)
             {
-                return new List<HostFileLine>();
+                return new List<HostsFileLine>();
             }
 
             return Lines.Where(x => x.IsEntry).ToList();
@@ -115,7 +115,7 @@ namespace XHost
             }
             else
             {
-                line = new HostFileLine(ip, host);
+                line = new HostsFileLine(ip, host);
                 Lines.Add(line);
                 IsDirty = true;
             }

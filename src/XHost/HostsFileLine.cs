@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XHost
 {
-    public class HostFileLine
+    public class HostsFileLine
     {
         public string Text { get; private set; }
 
@@ -37,16 +37,16 @@ namespace XHost
             }
         }
 
-        public HostFileLine()
+        public HostsFileLine()
         {
         }
 
-        public HostFileLine(string text)
+        public HostsFileLine(string text)
         {
             Update(text);
         }
 
-        public HostFileLine(string ip, string host)
+        public HostsFileLine(string ip, string host)
         {
             Update(ip, host);
         }

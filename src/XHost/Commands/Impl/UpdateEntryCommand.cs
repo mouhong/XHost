@@ -47,7 +47,7 @@ namespace XHost.Commands.Impl
                 return;
             }
 
-            var hostFile = context.HostFile;
+            var hostFile = context.Hosts;
 
             var host = commandLine.Parameters[1];
             var ip = commandLine.Parameters[0];

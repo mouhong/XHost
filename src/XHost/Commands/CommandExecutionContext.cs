@@ -7,11 +7,11 @@ namespace XHost.Commands
 {
     public class CommandExecutionContext
     {
-        public HostFile HostFile { get; private set; }
+        public HostsFile Hosts { get; private set; }
 
-        public CommandExecutionContext(HostFile hostFile)
+        public CommandExecutionContext(HostsFile hostFile)
         {
-            HostFile = hostFile;
+            Hosts = hostFile;
         }
     }
 }

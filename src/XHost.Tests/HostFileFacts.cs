@@ -22,7 +22,7 @@ namespace XHost.Tests
                     + "127.0.0.1 entry4.com";
 
                 var reader = new StringReader(hosts);
-                var hostFile = HostFile.Load(reader);
+                var hostFile = HostsFile.Load(reader);
 
                 Assert.Equal(6, hostFile.Lines.Count);
                 Assert.Equal(4, hostFile.AllEntries().Count);
@@ -41,7 +41,7 @@ namespace XHost.Tests
                     + "127.0.0.1 entry4.com";
 
                 var reader = new StringReader(hosts);
-                var hostFile = HostFile.Load(reader);
+                var hostFile = HostsFile.Load(reader);
 
                 hostFile["entry5.com"] = "127.0.0.1";
 
@@ -57,7 +57,7 @@ namespace XHost.Tests
             [Fact]
             public void will_add_if_entry_not_exists()
             {
-                var hostFile = new HostFile();
+                var hostFile = new HostsFile();
                 hostFile.Set("127.0.0.1", "test.com");
                 Assert.Equal(1, hostFile.AllEntries().Count);
                 Assert.Equal("127.0.0.1", hostFile.AllEntries()[0].IP);
@@ -67,7 +67,7 @@ namespace XHost.Tests
             [Fact]
             public void will_update_if_entry_already_exists()
             {
-                var hostFile = new HostFile();
+                var hostFile = new HostsFile();
                 hostFile.Set("127.0.0.1", "test.com");
                 hostFile.Set("127.1.1.1", "test.com");
                 Assert.Equal(1, hostFile.AllEntries().Count);
@@ -78,7 +78,7 @@ namespace XHost.Tests
             [Fact]
             public void will_update_IsDirty_property_if_and_only_if_real_changes_are_made()
             {
-                var hostFile = new HostFile();
+                var hostFile = new HostsFile();
                 hostFile.Set("127.0.0.1", "test.com");
                 Assert.True(hostFile.IsDirty);
                 hostFile.MarkClean();
@@ -97,7 +97,7 @@ namespace XHost.Tests
             [Fact]
             public void can_remove_entry_and_return_success_or_not()
             {
-                var hostFile = new HostFile();
+                var hostFile = new HostsFile();
                 hostFile.Set("127.0.0.1", "test.com");
 
                 Assert.False(hostFile.Remove("test1.com"));
@@ -110,7 +110,7 @@ namespace XHost.Tests
             [Fact]
             public void will_update_IsDirty_property_if_and_only_if_real_changes_are_made()
             {
-                var hostFile = new HostFile();
+                var hostFile = new HostsFile();
                 hostFile.Set("127.0.0.1", "test.com");
                 hostFile.MarkClean();
 
@@ -129,7 +129,7 @@ namespace XHost.Tests
             {
                 var hostFilePath = Path.Combine(Path.GetTempPath(), "hosts");
 
-                var hostFile = new HostFile();
+                var hostFile = new HostsFile();
                 hostFile.Set("127.0.0.1", "test.com");
 
                 Assert.True(hostFile.IsDirty);

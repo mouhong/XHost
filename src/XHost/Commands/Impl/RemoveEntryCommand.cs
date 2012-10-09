@@ -56,10 +56,10 @@ namespace XHost.Commands.Impl
 
             foreach (var host in hosts)
             {
-                if (context.HostFile.Remove(host)) removedHosts++;
+                if (context.Hosts.Remove(host)) removedHosts++;
             }
 
-            context.HostFile.Save();
+            context.Hosts.Save();
 
             Console.WriteLine(removedHosts + " entries removed");
         }

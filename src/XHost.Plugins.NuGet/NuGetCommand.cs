@@ -30,8 +30,8 @@ namespace XHost.Plugins.NuGet
 
         public void Execute(CommandLine commandLine, CommandExecutionContext context)
         {
-            context.HostFile.Set("157.56.8.150", "nuget.org");
-            context.HostFile.Save();
+            context.Hosts.Set("157.56.8.150", "nuget.org");
+            context.Hosts.Save();
 
             Console.WriteLine("OK");
         }
