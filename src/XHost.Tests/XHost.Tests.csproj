@@ -39,7 +39,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CommandLineFacts.cs" />
     <Compile Include="Commands\CommandOptionCollectionFacts.cs" />
+    <Compile Include="Commands\Impl\RemoveEntryCommandFacts.cs" />
     <Compile Include="HostFileFacts.cs" />
     <Compile Include="HostFileLineFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

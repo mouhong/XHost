@@ -37,7 +37,7 @@ namespace XHost.Tests
                 var hosts = "# comment line 1" + Environment.NewLine
                     + "127.0.0.1 entry1.com" + Environment.NewLine
                     + Environment.NewLine
-                    + "# comment line 2 " + Environment.NewLine
+                    + "# comment line 2" + Environment.NewLine
                     + "127.0.0.1 entry4.com";
 
                 var reader = new StringReader(hosts);
@@ -55,16 +55,37 @@ namespace XHost.Tests
         public class TheSetMethod
         {
             [Fact]
+            public void will_add_if_entry_not_exists()
+            {
+                var hostFile = new HostFile();
+                hostFile.Set("127.0.0.1", "test.com");
+                Assert.Equal(1, hostFile.AllEntries().Count);
+                Assert.Equal("127.0.0.1", hostFile.AllEntries()[0].IP);
+                Assert.Equal("test.com", hostFile.AllEntries()[0].Host);
+            }
+
+            [Fact]
+            public void will_update_if_entry_already_exists()
+            {
+                var hostFile = new HostFile();
+                hostFile.Set("127.0.0.1", "test.com");
+                hostFile.Set("127.1.1.1", "test.com");
+                Assert.Equal(1, hostFile.AllEntries().Count);
+                Assert.Equal("127.1.1.1", hostFile.AllEntries()[0].IP);
+                Assert.Equal("test.com", hostFile.AllEntries()[0].Host);
+            }
+
+            [Fact]
             public void will_update_IsDirty_property_if_and_only_if_real_changes_are_made()
             {
                 var hostFile = new HostFile();
                 hostFile.Set("127.0.0.1", "test.com");
                 Assert.True(hostFile.IsDirty);
-
                 hostFile.MarkClean();
 
                 hostFile.Set("127.0.0.1", "test1.com");
                 Assert.True(hostFile.IsDirty);
+                hostFile.MarkClean();
 
                 hostFile.Set("127.0.0.1", "test1.com");
                 Assert.False(hostFile.IsDirty);

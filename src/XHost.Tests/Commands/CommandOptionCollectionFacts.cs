@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -66,7 +67,7 @@ namespace XHost.Commands.Tests
                 }
                 else
                 {
-                    Assert.Equal(expectedValues, option.Values);
+                    Assert.Equal(expectedValues, option.Values.ToArray());
                 }
             }
         }

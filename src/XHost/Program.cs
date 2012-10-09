@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XHost.Commands;
+using XHost.Commands.Impl;
 
 namespace XHost
 {
@@ -12,49 +13,21 @@ namespace XHost
 
         static void Main(string[] args)
         {
+            Console.Title = "XHost - A command line tool to manage Windows hosts file";
+
             ExecuteWithExceptionHandling(() =>
             {
-                CommandExecutors.Register(typeof(Program).Assembly);
+                CommandFactory.RegisterCommands(typeof(Program).Assembly);
             });
 
             if (args != null && args.Length > 0)
             {
-                if (args[0].StartsWith("-") && args[0].Length > 1)
-                {
-                    args[0] = args[0].Substring(1);
-                }
-
                 ExecuteWithExceptionHandling(() => Run(String.Join(" ", args)));
             }
             else
             {
-                Welcome();
-
-                var command = Console.ReadLine();
-                while (true)
-                {
-                    command = command.TrimStart('-');
-
-                    if (!String.IsNullOrEmpty(command))
-                    {
-                        ExecuteWithExceptionHandling(() => Run(command));
-                    }
-
-                    command = Console.ReadLine();
-                }
+                new HelpCommand().Execute(new CommandLine("help"), new CommandExecutionContext(null, Output));
             }
-        }
-
-        static void Welcome()
-        {
-            Console.WriteLine(
-                @"
-XHost
-A command line tool to manage hosts file
-----------------------------------------
-Copyright (C) SYM http://www.mouhong.me
-----------------------------------------
-");
         }
 
         static void ExecuteWithExceptionHandling(Action action)
@@ -66,23 +39,22 @@ Copyright (C) SYM http://www.mouhong.me
             catch (Exception ex)
             {
                 Output.ErrorLine(ex.Message);
+                Output.ErrorLine(ex.StackTrace);
             }
         }
 
-        static void Run(string command)
+        static void Run(string commandLine)
         {
             var console = DefaultOutput.Instance;
-            var cmd = Command.Parse(command);
-            var executor = CommandExecutors.Find(cmd.Name);
+            var cmdLine = CommandLine.Parse(commandLine);
+            var command = CommandFactory.Find(cmdLine.CommandName);
 
-            if (executor == null)
-                throw new InvalidOperationException("Unrecognized command: " + cmd.Name);
+            if (command == null)
+                throw new InvalidOperationException("Unrecognized command: " + cmdLine.CommandName);
 
             var context = new CommandExecutionContext(HostFile.Load(), console);
 
-            executor.Execute(cmd, context);
-
-            console.WriteLine();
+            command.Execute(cmdLine, context);
         }
     }
 }

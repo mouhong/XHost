@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace XHost.Commands.Executors
+namespace XHost.Commands.Impl
 {
-    public class ListCommandExecutor : ICommandExecutor
+    public class ListCommand : ICommand
     {
         public string Name
         {
@@ -23,7 +23,23 @@ namespace XHost.Commands.Executors
             }
         }
 
-        public void Execute(Command commandLine, CommandExecutionContext context)
+        public string Description
+        {
+            get
+            {
+                return "List all entries.";
+            }
+        }
+
+        public string Usage
+        {
+            get
+            {
+                return "xhost -" + Name;
+            }
+        }
+
+        public void Execute(CommandLine commandLine, CommandExecutionContext context)
         {
             var entries = context.HostFile.AllEntries();
 

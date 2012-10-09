@@ -39,19 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Command.cs" />
+    <Compile Include="ApplicationInfo.cs" />
+    <Compile Include="Commands\CommandLine.cs" />
     <Compile Include="Commands\CommandExecutionContext.cs" />
-    <Compile Include="Commands\CommandExecutors.cs" />
+    <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\CommandOption.cs" />
     <Compile Include="Commands\CommandOptionCollection.cs" />
-    <Compile Include="Commands\Executors\FindEntryCommandExecutor.cs" />
-    <Compile Include="Commands\Executors\ListCommandExecutor.cs" />
-    <Compile Include="Commands\Executors\AddEntryCommandExecutor.cs" />
-    <Compile Include="Commands\Executors\RemoveEntryCommandExecutor.cs" />
+    <Compile Include="Commands\Impl\FindEntryCommand.cs" />
+    <Compile Include="Commands\Impl\HelpCommand.cs" />
+    <Compile Include="Commands\Impl\ListCommand.cs" />
+    <Compile Include="Commands\Impl\AddEntryCommand.cs" />
+    <Compile Include="Commands\Impl\RemoveEntryCommand.cs" />
+    <Compile Include="Commands\Impl\UpdateEntryCommand.cs" />
     <Compile Include="DefaultOutput.cs" />
     <Compile Include="HostFile.cs" />
     <Compile Include="HostFileLine.cs" />
-    <Compile Include="Commands\ICommandExecutor.cs" />
+    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="IOutput.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

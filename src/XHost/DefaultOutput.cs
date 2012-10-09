@@ -9,6 +9,16 @@ namespace XHost
     {
         public static readonly DefaultOutput Instance = new DefaultOutput();
 
+        public void Write(string message)
+        {
+            Console.Write(message);
+        }
+
+        public void Write(string format, params object[] args)
+        {
+            Console.Write(format, args);
+        }
+
         public void WriteLine()
         {
             Console.WriteLine();
@@ -19,6 +29,11 @@ namespace XHost
             Console.WriteLine(message);
         }
 
+        public void WriteLine(string format, params object[] args)
+        {
+            Console.WriteLine(format, args);
+        }
+
         public void WarnLine(string message)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -26,10 +41,24 @@ namespace XHost
             Console.ResetColor();
         }
 
+        public void WarnLine(string format, params object[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(format, args);
+            Console.ResetColor();
+        }
+
         public void ErrorLine(string message)
         {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
+        public void ErrorLine(string format, params object[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(format, args);
             Console.ResetColor();
         }
     }

@@ -5,12 +5,16 @@ using System.Text;
 
 namespace XHost.Commands
 {
-    public interface ICommandExecutor
+    public interface ICommand
     {
         string Name { get; }
 
         string ShortName { get; }
 
-        void Execute(Command command, CommandExecutionContext context);
+        string Description { get; }
+
+        string Usage { get; }
+
+        void Execute(CommandLine commandLine, CommandExecutionContext context);
     }
 }

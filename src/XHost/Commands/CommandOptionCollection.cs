@@ -61,6 +61,7 @@ namespace XHost.Commands
                 if (arg[0] == '-')
                 {
                     current = new CommandOption(arg.Substring(1));
+                    arguments.Add(current);
                 }
                 else
                 {
