@@ -60,7 +60,7 @@ public class NuGetCommand : ICommand
         context.Hosts.Set("157.56.8.150", "nuget.org");
         context.Hosts.Save();
 
-        context.Output.WriteLine("OK");
+        Console.WriteLine("OK");
     }
 }
 ```
