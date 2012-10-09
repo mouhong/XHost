@@ -56,7 +56,7 @@ namespace XHost.Commands
                 var arg = args[i];
 
                 if (arg == "-")
-                        throw new InvalidOperationException("Single - encountered. Are you missing argument name?");
+                    throw new InvalidOperationException("Char '-' must be followed by command or option name.");
 
                 if (arg[0] == '-')
                 {
@@ -66,7 +66,7 @@ namespace XHost.Commands
                 else
                 {
                     if (current == null)
-                        throw new InvalidOperationException("Argument value should always follow a argument name. Input arg index: " + i);
+                        throw new InvalidOperationException("Missing option name. Option value: " + arg);
 
                     current.Values.Add(arg);
                 }

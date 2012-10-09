@@ -43,7 +43,7 @@ namespace XHost.Commands.Impl
         {
             if (commandLine.Parameters.Count != 2)
             {
-                context.Output.ErrorLine("Please enter the IP and the host name as parameters. For example: -" + commandLine.CommandName + " 127.0.0.1 mouhong.me");
+                ConsoleUtil.ErrorLine("Invalid request. Please check syntax: " + Usage);
                 return;
             }
 
@@ -57,11 +57,11 @@ namespace XHost.Commands.Impl
                     context.HostFile.Set(ip, host);
                     context.HostFile.Save();
 
-                    context.Output.WriteLine("And entry updated: " + commandLine.Parameters[0] + " " + commandLine.Parameters[1]);
+                    Console.WriteLine("1 entry updated: " + commandLine.Parameters[0] + " " + commandLine.Parameters[1]);
                 }
                 else
                 {
-                    context.Output.ErrorLine(host + " already exists. Use -override option to override the existing entry.");
+                    ConsoleUtil.ErrorLine(host + " already exists. Use -override to override the existing entry.");
                 }
             }
             else
@@ -69,7 +69,7 @@ namespace XHost.Commands.Impl
                 context.HostFile.Set(commandLine.Parameters[0], commandLine.Parameters[1]);
                 context.HostFile.Save();
 
-                context.Output.WriteLine("New entry added: " + commandLine.Parameters[0] + " " + commandLine.Parameters[1]);
+                Console.WriteLine("1 entry added: " + commandLine.Parameters[0] + " " + commandLine.Parameters[1]);
             }
         }
     }

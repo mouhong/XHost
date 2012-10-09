@@ -9,12 +9,9 @@ namespace XHost.Commands
     {
         public HostFile HostFile { get; private set; }
 
-        public IOutput Output { get; private set; }
-
-        public CommandExecutionContext(HostFile hostFile, IOutput output)
+        public CommandExecutionContext(HostFile hostFile)
         {
             HostFile = hostFile;
-            Output = output;
         }
     }
 }

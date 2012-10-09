@@ -45,13 +45,13 @@ namespace XHost.Commands.Impl
 
             if (entries.Count == 0)
             {
-                context.Output.WriteLine("Hosts file has no entry.");
+                Console.WriteLine("No entry was found.");
             }
             else
             {
                 foreach (var entry in entries)
                 {
-                    context.Output.WriteLine(entry.IP + "\t" + entry.Host);
+                    Console.WriteLine(entry.IP + "\t" + entry.Host);
                 }
             }
         }

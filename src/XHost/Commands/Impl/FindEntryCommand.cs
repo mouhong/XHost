@@ -43,7 +43,7 @@ namespace XHost.Commands.Impl
         {
             if (commandLine.Parameters.Count == 0)
             {
-                context.Output.ErrorLine(commandLine.CommandName + " command requires arguments.");
+                ConsoleUtil.ErrorLine("Invalid request. Please check syntax: " + Usage);
                 return;
             }
 
@@ -51,11 +51,11 @@ namespace XHost.Commands.Impl
 
             if (entry == null)
             {
-                context.Output.WriteLine("No entry was found.");
+                Console.WriteLine("No entry was found.");
             }
             else
             {
-                context.Output.WriteLine(entry.IP + " " + entry.Host);
+                Console.WriteLine(entry.IP + " " + entry.Host);
             }
         }
     }

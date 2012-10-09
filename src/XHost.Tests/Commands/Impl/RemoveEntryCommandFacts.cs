@@ -19,7 +19,7 @@ namespace XHost.Tests.Commands.Impl
             var commandLine = CommandLine.Parse("-remove test1.com,test2.com");
             var command = CommandFactory.Find(commandLine.CommandName);
 
-            var context = new CommandExecutionContext(new HostFile(), new DefaultOutput());
+            var context = new CommandExecutionContext(new HostFile());
             context.HostFile["test1.com"] = "192.168.1.2";
             context.HostFile["test2.com"] = "192.168.1.3";
             context.HostFile["test3.com"] = "129.168.1.4";
@@ -39,7 +39,7 @@ namespace XHost.Tests.Commands.Impl
             var commandLine = CommandLine.Parse("-remove test1.com, test2.com");
             var command = CommandFactory.Find(commandLine.CommandName);
 
-            var context = new CommandExecutionContext(new HostFile(), new DefaultOutput());
+            var context = new CommandExecutionContext(new HostFile());
             context.HostFile["test1.com"] = "192.168.1.2";
             context.HostFile["test2.com"] = "192.168.1.3";
             context.HostFile["test3.com"] = "129.168.1.4";

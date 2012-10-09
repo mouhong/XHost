@@ -47,7 +47,7 @@ public class NuGetCommand : ICommand
 
     public string Description
     {
-        get { return "Add 157.56.8.150 nuget.org to hosts file"; }
+        get { return "Add 157.56.8.150 nuget.org to hosts file."; }
     }
 
     public string Usage

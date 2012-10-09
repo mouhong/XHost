@@ -41,7 +41,7 @@ namespace XHost.Commands.Impl
 
         public void Execute(CommandLine commandLine, CommandExecutionContext context)
         {
-            context.Output.WriteLine(XHostConfig.Instance.HostsFilePath);
+            Console.WriteLine(XHostConfig.Instance.HostsFilePath);
         }
     }
 }

@@ -41,35 +41,37 @@ namespace XHost.Commands.Impl
 
         public void Execute(CommandLine commandLine, CommandExecutionContext context)
         {
-            var output = context.Output;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
 
-            output.WriteLine("==================================================");
-            output.WriteLine(" Welcome to {0} {1}", ApplicationInfo.Title, ApplicationInfo.Version.ToString(2));
-            output.WriteLine(" " + ApplicationInfo.Description);
-            output.WriteLine(" " + ApplicationInfo.CopyrightHolder);
-            output.WriteLine("==================================================");
+            Console.WriteLine("==================================================");
+            Console.WriteLine(" Welcome to {0} {1}", ApplicationInfo.Title, ApplicationInfo.Version.ToString(2));
+            Console.WriteLine(" " + ApplicationInfo.Description);
+            Console.WriteLine(" " + ApplicationInfo.CopyrightHolder);
+            Console.WriteLine("==================================================");
 
-            output.WriteLine();
-            output.WriteLine("All available commands are:");
+            Console.ResetColor();
+
+            Console.WriteLine();
+            Console.WriteLine("Available commands are:");
 
             foreach (var cmd in CommandFactory.All)
             {
-                output.Write("-" + cmd.Name);
-                output.Write("\t");
+                Console.Write("-" + cmd.Name);
+                Console.Write("\t");
 
                 if (!String.IsNullOrEmpty(cmd.ShortName))
                 {
-                    output.Write("[" + cmd.ShortName + "] ");
+                    Console.Write("[" + cmd.ShortName + "] ");
                 }
 
-                output.Write(cmd.Description);
+                Console.Write(cmd.Description);
 
                 if (!String.IsNullOrEmpty(cmd.Usage))
                 {
-                    output.Write(" Usage: " + cmd.Usage);
+                    Console.Write(" Usage: " + cmd.Usage);
                 }
 
-                output.WriteLine();
+                Console.WriteLine();
             }
         }
     }

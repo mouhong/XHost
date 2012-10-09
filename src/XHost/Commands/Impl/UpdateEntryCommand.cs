@@ -43,7 +43,7 @@ namespace XHost.Commands.Impl
         {
             if (commandLine.Parameters.Count != 2)
             {
-                context.Output.ErrorLine("Invalid request. Please check syntax: " + Usage);
+                ConsoleUtil.ErrorLine("Invalid request. Please check syntax: " + Usage);
                 return;
             }
 
@@ -54,13 +54,13 @@ namespace XHost.Commands.Impl
 
             if (!hostFile.Contains(host))
             {
-                context.Output.ErrorLine(host + " was not found");
+                ConsoleUtil.ErrorLine(host + " was not found");
             }
             else
             {
                 hostFile.Set(ip, host);
                 hostFile.Save();
-                context.Output.WriteLine("One entry updated: " + ip + " " + host);
+                Console.WriteLine("1 entry updated: " + ip + " " + host);
             }
         }
     }

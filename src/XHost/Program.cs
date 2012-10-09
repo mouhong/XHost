@@ -11,8 +11,6 @@ namespace XHost
 {
     class Program
     {
-        static IOutput Output = DefaultOutput.Instance;
-
         static void Main(string[] args)
         {
             ExecuteWithExceptionHandling(() =>
@@ -48,21 +46,19 @@ namespace XHost
             }
             catch (Exception ex)
             {
-                Output.ErrorLine(ex.Message);
-                Output.ErrorLine(ex.StackTrace);
+                ConsoleUtil.ErrorLine(ex.Message);
             }
         }
 
         static void Run(string commandLine)
         {
-            var console = DefaultOutput.Instance;
             var cmdLine = CommandLine.Parse(commandLine);
             var command = CommandFactory.Find(cmdLine.CommandName);
 
             if (command == null)
                 throw new InvalidOperationException("Unknown command: " + cmdLine.CommandName);
 
-            var context = new CommandExecutionContext(HostFile.Load(), console);
+            var context = new CommandExecutionContext(HostFile.Load());
 
             command.Execute(cmdLine, context);
         }

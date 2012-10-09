@@ -43,7 +43,7 @@ namespace XHost.Commands.Impl
         {
             if (commandLine.Parameters.Count == 0)
             {
-                context.Output.ErrorLine("Invalid request. Please check syntax: " + Usage);
+                ConsoleUtil.ErrorLine("Invalid request. Please check syntax: " + Usage);
                 return;
             }
 
@@ -61,7 +61,7 @@ namespace XHost.Commands.Impl
 
             context.HostFile.Save();
 
-            context.Output.WriteLine(removedHosts + " entries removed");
+            Console.WriteLine(removedHosts + " entries removed");
         }
     }
 }

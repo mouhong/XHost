@@ -36,7 +36,7 @@ namespace XHost.Commands
             if (args.Count == 0) return null;
 
             if (args[0] == "-")
-                throw new InvalidOperationException("Single - encountered. Command name should be the first argument and should start with - char");
+                throw new InvalidOperationException("Char '-' must be followed by command or option name.");
 
             var cmdLine = new CommandLine(args[0].Substring(1));
 
