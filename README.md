@@ -7,7 +7,7 @@ XHost is a command line tool to manage Windows hosts file.
 .NET Framework 3.5+
 
 ## How to Use? ##
-1. Add the containing directory of `xhost.exe` to PATH environment varible;
+1. Add the containing directory of `xhost.exe` to PATH environment variable;
 2. Open command line window (cmd.exe), type `xhost -help`;
 
 ## Usage Samples ##
