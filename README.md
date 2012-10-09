@@ -12,17 +12,17 @@ XHost is a command line tool to manage Windows hosts file.
 
 ## Usage Samples ##
 
-1. `xhost -ls`: List all entries in the hosts file;
+1. `xhost -ls`: List all host entries;
 2. `xhost -find test.com`: Find the entry whose host is `test.com`;
 3. `xhost -add 127.0.0.1 test.com`: Add a new entry to the hosts file;
 4. `xhost -update 127.0.0.1 test.com`: Update the `test.com` entry;
-5. `xhost -rm test1.com`: Remove host `test1.com` from hosts file;
-6. `xhost -rm test1.com, test2.com`: Revmoe hosts `test1.com` and `test2.com` from hosts file;
+5. `xhost -rm test1.com`: Remove host `test1.com` from the hosts file;
+6. `xhost -rm test1.com, test2.com`: Remove host `test1.com` and `test2.com` from the hosts file;
 7. `xhost -h	`: Show help;
 
 ## Extensibility ##
 
-Custom commands can be added by writing plugins. A plugin in XHost is a command class implementing `XHost.Commands.ICommand`. To write a plugin, you should:
+Custom commands can be added by writing plugins. A plugin in XHost is a class implementing `XHost.Commands.ICommand`. To write a plugin, you have to:
 
 1. Write a class implementing `XHost.Commands.ICommand` interface;
 2. Compile the plugin;
@@ -30,7 +30,7 @@ Custom commands can be added by writing plugins. A plugin in XHost is a command 
 
 ### Sample Plugin: NuGet Plugin ###
 
-NuGet is sometimes blocked in China. In this sample plugin, we will add a entry for nuget.org to the hosts file.
+NuGet is sometimes blocked in China. In this sample plugin, we will add a host entry for nuget.org.
 
 ```csharp
 public class NuGetCommand : ICommand
@@ -65,6 +65,6 @@ public class NuGetCommand : ICommand
 }
 ```
 
-**Note:** The `Description` and `Usage` properties are only used in the help.
+**Note:** The `Description` and `Usage` properties will be used in the help.
 
 Then you can use `xhost -nuget` to add host entry for nuget.org.
