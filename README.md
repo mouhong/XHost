@@ -10,7 +10,7 @@ XHost is a command line tool to manage Windows hosts file.
 1. Add the containing directory of `xhost.exe` to PATH environment varible;
 2. Open command line window (cmd.exe), type `xhost -help`;
 
-## Samples ##
+## Usage Samples ##
 
 1. `xhost -ls`: List all entries in the hosts file;
 2. `xhost -find test.com`: Find the entry whose host is `test.com`;
@@ -67,7 +67,4 @@ public class NuGetCommand : ICommand
 
 **Note:** The `Description` and `Usage` properties are only used in the help.
 
-Then you can use the following command to add host entry for nuget.org:
-
-`xhost -nuget`
-
+Then you can use `xhost -nuget` to add host entry for nuget.org.
