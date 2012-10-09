@@ -33,7 +33,8 @@ namespace XHost.Plugins.Fire
             var entries = new Dictionary<string, string>
             {
                 { "157.56.8.150", "nuget.org" },
-                { "216.121.112.229", "ayende.com" }
+                { "216.121.112.229", "ayende.com" },
+                { "74.125.91.113", "groups.google.com" }
             };
 
             foreach (var entry in entries)
