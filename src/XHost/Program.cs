@@ -13,8 +13,6 @@ namespace XHost
 
         static void Main(string[] args)
         {
-            Console.Title = "XHost - A command line tool to manage Windows hosts file";
-
             ExecuteWithExceptionHandling(() =>
             {
                 CommandFactory.RegisterCommands(typeof(Program).Assembly);

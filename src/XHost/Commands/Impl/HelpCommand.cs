@@ -43,9 +43,11 @@ namespace XHost.Commands.Impl
         {
             var output = context.Output;
 
-            output.WriteLine("Welcome to {0} {1}", ApplicationInfo.Title, ApplicationInfo.Version.ToString(2));
-            output.WriteLine(ApplicationInfo.Description);
-            output.WriteLine(ApplicationInfo.CopyrightHolder);
+            output.WriteLine("==================================================");
+            output.WriteLine(" Welcome to {0} {1}", ApplicationInfo.Title, ApplicationInfo.Version.ToString(2));
+            output.WriteLine(" " + ApplicationInfo.Description);
+            output.WriteLine(" " + ApplicationInfo.CopyrightHolder);
+            output.WriteLine("==================================================");
 
             output.WriteLine();
             output.WriteLine("All available commands are:");
