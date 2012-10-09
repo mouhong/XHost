@@ -27,7 +27,7 @@ namespace XHost.Commands.Impl
         {
             get
             {
-                return "Display XHost help.";
+                return "Show help.";
             }
         }
 

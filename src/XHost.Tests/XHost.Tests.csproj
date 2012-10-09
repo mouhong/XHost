@@ -45,6 +45,7 @@
     <Compile Include="HostFileFacts.cs" />
     <Compile Include="HostFileLineFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XHostConfigFacts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

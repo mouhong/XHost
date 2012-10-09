@@ -8,7 +8,7 @@ namespace XHost.Commands
 {
     public static class CommandFactory
     {
-        static ICommand[] _commands;
+        static readonly List<ICommand> _commands = new List<ICommand>();
 
         public static IEnumerable<ICommand> All
         {
@@ -18,17 +18,34 @@ namespace XHost.Commands
             }
         }
 
-        public static void RegisterCommands(Assembly assemblyToScan)
+        public static void Clear()
+        {
+            _commands.Clear();
+        }
+
+        public static void Register(Assembly assembly)
         {
             var interfaceType = typeof(ICommand);
 
-            var types = from type in assemblyToScan.GetExportedTypes()
+            var types = from type in assembly.GetExportedTypes()
                         where type.IsClass && !type.IsAbstract && interfaceType.IsAssignableFrom(type)
                         select type;
 
-            _commands = types.Select(type => (ICommand)Activator.CreateInstance(type))
-                             .OrderBy(x=>x.Name)
-                             .ToArray();
+            foreach (var type in types)
+            {
+                if (!_commands.Any(x => x.GetType() == type))
+                {
+                    _commands.Add((ICommand)Activator.CreateInstance(type));
+                }
+            }
+        }
+
+        public static void Register(IEnumerable<Assembly> assemblies)
+        {
+            foreach (var assembly in assemblies)
+            {
+                Register(assembly);
+            }
         }
 
         public static ICommand Find(string commandName)

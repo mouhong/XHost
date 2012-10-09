@@ -34,7 +34,7 @@ namespace XHost
 
         public static HostFile Load()
         {
-            return Load(XHostConfig.HostsFilePath);
+            return Load(XHostConfig.Instance.HostsFilePath);
         }
 
         public static HostFile Load(string path)
@@ -144,7 +144,7 @@ namespace XHost
         {
             if (!IsDirty) return;
 
-            SaveAs(XHostConfig.HostsFilePath);
+            SaveAs(XHostConfig.Instance.HostsFilePath);
             IsDirty = false;
         }
 

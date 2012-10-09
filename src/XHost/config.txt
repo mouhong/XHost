@@ -1,0 +1,1 @@
+﻿HostsFilePath = D:\hosts

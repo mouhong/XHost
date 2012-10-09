@@ -134,7 +134,7 @@ namespace XHost.Tests
 
                 Assert.True(hostFile.IsDirty);
 
-                XHostConfig.HostsFilePath = hostFilePath;
+                XHostConfig.Instance.HostsFilePath = hostFilePath;
                 hostFile.Save();
 
                 Assert.False(hostFile.IsDirty);

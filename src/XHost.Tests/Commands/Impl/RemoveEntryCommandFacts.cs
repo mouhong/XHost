@@ -13,7 +13,8 @@ namespace XHost.Tests.Commands.Impl
         [Fact]
         public void can_remove_mulit_entries_separated_by_comma()
         {
-            CommandFactory.RegisterCommands(Assembly.Load("XHost"));
+            CommandFactory.Clear();
+            CommandFactory.Register(Assembly.Load("XHost"));
 
             var commandLine = CommandLine.Parse("-remove test1.com,test2.com");
             var command = CommandFactory.Find(commandLine.CommandName);
@@ -32,7 +33,8 @@ namespace XHost.Tests.Commands.Impl
         [Fact]
         public void can_remove_multi_entries_separated_by_comma_space()
         {
-            CommandFactory.RegisterCommands(Assembly.Load("XHost"));
+            CommandFactory.Clear();
+            CommandFactory.Register(Assembly.Load("XHost"));
 
             var commandLine = CommandLine.Parse("-remove test1.com, test2.com");
             var command = CommandFactory.Find(commandLine.CommandName);

@@ -61,7 +61,7 @@ namespace XHost.Commands.Impl
                 }
                 else
                 {
-                    context.Output.ErrorLine(host + " already exists. Use -override option if want to override the existing entry.");
+                    context.Output.ErrorLine(host + " already exists. Use -override option to override the existing entry.");
                 }
             }
             else
