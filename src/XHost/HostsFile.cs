@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using XHost.IO;
 
 namespace XHost
 {
     public class HostsFile
     {
+        private ITextFileWriter _textFileWriter;
+
         public IList<HostsFileLine> Lines { get; private set; }
 
         public bool IsDirty { get; private set; }
@@ -28,7 +31,16 @@ namespace XHost
         }
 
         public HostsFile()
+            : this(new DefaultTextFileWriter())
         {
+        }
+
+        public HostsFile(ITextFileWriter textFileWriter)
+        {
+            if (textFileWriter == null)
+                throw new ArgumentNullException("textFileWriter");
+
+            _textFileWriter = textFileWriter;
             Lines = new List<HostsFileLine>();
         }
 
@@ -150,18 +162,24 @@ namespace XHost
 
         public void SaveAs(string path)
         {
-            using (var writer = new StreamWriter(path, false, Encoding.Default))
-            {
-                SaveAs(writer);
-            }
+            _textFileWriter.Write(path, ToString(), Encoding.Default);
         }
 
         public void SaveAs(TextWriter writer)
         {
+            writer.Write(ToString());
+        }
+
+        public override string ToString()
+        {
+            var content = new StringBuilder();
+
             foreach (var line in Lines)
             {
-                writer.WriteLine(line.Text);
+                content.AppendLine(line.Text);
             }
+
+            return content.ToString();
         }
     }
 }

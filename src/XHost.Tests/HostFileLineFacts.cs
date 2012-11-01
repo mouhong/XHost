@@ -53,6 +53,15 @@ namespace XHost.Tests
                 Assert.Equal("192.168.1.10", line.IP);
                 Assert.Equal("test1.com", line.Host);
             }
+
+            [Fact]
+            public void can_support_dot_shortcut()
+            {
+                var line = new HostsFileLine();
+                line.Update(".", "test.com");
+                Assert.Equal("127.0.0.1 test.com", line.Text);
+                Assert.Equal("127.0.0.1", line.IP);
+            }
         }
     }
 }

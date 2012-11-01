@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using XHost.Commands;
+using XHost.Commands.Impl;
+using XHost.Tests.Mocks;
 using Xunit;
 
 namespace XHost.Tests.Commands.Impl
@@ -13,17 +15,14 @@ namespace XHost.Tests.Commands.Impl
         [Fact]
         public void can_remove_mulit_entries_separated_by_comma()
         {
-            CommandFactory.Clear();
-            CommandFactory.Register(Assembly.Load("XHost"));
-
             var commandLine = CommandLine.Parse("-remove test1.com,test2.com");
-            var command = CommandFactory.Find(commandLine.CommandName);
 
-            var context = new CommandExecutionContext(new HostsFile());
+            var context = new CommandExecutionContext(new HostsFile(new MockTextFileWriter()));
             context.Hosts["test1.com"] = "192.168.1.2";
             context.Hosts["test2.com"] = "192.168.1.3";
             context.Hosts["test3.com"] = "129.168.1.4";
 
+            var command = new RemoveEntryCommand();
             command.Execute(commandLine, context);
 
             Assert.Equal(1, context.Hosts.AllEntries().Count);
@@ -33,17 +32,14 @@ namespace XHost.Tests.Commands.Impl
         [Fact]
         public void can_remove_multi_entries_separated_by_comma_space()
         {
-            CommandFactory.Clear();
-            CommandFactory.Register(Assembly.Load("XHost"));
-
             var commandLine = CommandLine.Parse("-remove test1.com, test2.com");
-            var command = CommandFactory.Find(commandLine.CommandName);
 
-            var context = new CommandExecutionContext(new HostsFile());
+            var context = new CommandExecutionContext(new HostsFile(new MockTextFileWriter()));
             context.Hosts["test1.com"] = "192.168.1.2";
             context.Hosts["test2.com"] = "192.168.1.3";
             context.Hosts["test3.com"] = "129.168.1.4";
 
+            var command = new RemoveEntryCommand();
             command.Execute(commandLine, context);
 
             Assert.Equal(1, context.Hosts.AllEntries().Count);

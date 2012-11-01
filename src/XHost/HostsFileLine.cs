@@ -58,6 +58,11 @@ namespace XHost
             if (String.IsNullOrEmpty(host))
                 throw new ArgumentException("'host' is required.");
 
+            if (ip == ".")
+            {
+                ip = "127.0.0.1";
+            }
+
             IP = ip;
             Host = host;
             Text = IP + " " + Host;

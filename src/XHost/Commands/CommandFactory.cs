@@ -25,6 +25,9 @@ namespace XHost.Commands
 
         public static void Register(Assembly assembly)
         {
+            if (assembly == null)
+                throw new ArgumentNullException("assembly");
+
             var interfaceType = typeof(ICommand);
 
             var types = from type in assembly.GetExportedTypes()
@@ -46,6 +49,14 @@ namespace XHost.Commands
             {
                 Register(assembly);
             }
+        }
+
+        public static void Register(ICommand command)
+        {
+            if (command == null)
+                throw new ArgumentNullException("command");
+
+            _commands.Add(command);
         }
 
         public static ICommand Find(string commandName)

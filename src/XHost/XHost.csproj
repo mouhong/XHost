@@ -56,6 +56,8 @@
     <Compile Include="HostsFile.cs" />
     <Compile Include="HostsFileLine.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="IO\DefaultTextFileWriter.cs" />
+    <Compile Include="IO\ITextFileWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XHostConfig.cs" />
